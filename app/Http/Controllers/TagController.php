@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -17,6 +18,11 @@ class TagController extends Controller
         //
     }
 
+    public function typeahead()
+    {
+        $query = request('query');
+        return new JsonResponse(Tag::where('name', 'like', "%$query%")->limit(5)->get('name')->map(function($v){return $v->name;}));
+    }
     /**
      * Show the form for creating a new resource.
      *

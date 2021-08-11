@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\WallpaperController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,8 +24,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/tags/typeahead', [TagController::class, 'typeahead']);
 Route::resource('wallpaper', WallpaperController::class);
 Route::get('/favorite/{wallpaper}', [FavoriteController::class, "store"])->name('wallpaper.favorite');
 Route::get('/favorite', [FavoriteController::class, "index"])->name('favorites.index');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');

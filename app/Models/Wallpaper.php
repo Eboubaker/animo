@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Auth;
 
 class Wallpaper extends Model
@@ -27,10 +28,12 @@ class Wallpaper extends Model
         return $this->belongsToMany(User::class, 'favorites');
     }
 
-    public function tags()
+    public function tags():BelongsToMany
     {
         return $this->belongsToMany(Tag::class, 'wallpapers_tags')->withTimestamps();
     }
+
+
     public function getExtensionAttribute()
     {
         return self::$extensions[$this->attributes["mime"]];
@@ -51,6 +54,10 @@ class Wallpaper extends Model
     {
         return url("images/".$this->previewFullName);
     }
+    public function getUrlAttribute()
+    {
+        return route('wallpaper.show', $this->id);
+    }
     public function getPreviewFullNameAttribute()
     {
         return $this->getKey().".small.jpg";
@@ -60,7 +67,7 @@ class Wallpaper extends Model
         $result = copy($path, public_path('images'). DIRECTORY_SEPARATOR . $this->getKey() . $this->fullExtension);
         if($result)
         {
-            $percent = 0.5;
+            $percent = 0.3;
             $newwidth = $this->width * $percent;
             $newheight = $this->height * $percent;
             $reduced = imagecreatetruecolor($newwidth, $newheight);

@@ -23,9 +23,7 @@ class CreateWallpapersTable extends Migration
             $table->string("mime")->nullable()->default("image/jpeg");
             $table->integer("view_count")->nullable()->default(0);
 
-            $table->foreignIdFor(User::class, 'uploader_id');
-
-            $table->foreign('uploader_id')->on('users')->references('id');
+            $table->foreignId('uploader_id')->constrained('users');
             $table->timestamps();
         });
     }

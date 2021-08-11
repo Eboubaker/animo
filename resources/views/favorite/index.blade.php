@@ -15,7 +15,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="grid-container">
-            @foreach ($wallpapers as $wallpaper)
+            @forelse ($wallpapers as $wallpaper)
                 <a style="position: relative;text-decoration: none" class="text-secondary" href="{{ route('wallpaper.show', $wallpaper->getKey()) }}">
                     <img class="grid-item" onmouseout="this.parentElement.getElementsByClassName('img-desc')[0].style.display ='none'" onmouseover="this.parentElement.getElementsByClassName('img-desc')[0].style.display ='block'" style="width: 100%; margin: .5rem 0;display: inline;" src="{{ $wallpaper->previewPath }}" alt="{{ $wallpaper->name }}">
                     <div class="img-desc" style="color:white;position: absolute;bottom:6px;;width:100%;display:none;background: rgba(120, 120, 120, .5)">
@@ -24,7 +24,9 @@
                         </div>
                     </div>
                 </a>
-            @endforeach
+            @empty
+                <div class="card" style="background-color: rgba(120, 120, 120, .5); width: 80vw; height: 40px; padding:5px"> You have no favorites !</div>
+            @endforelse
         </div>
         <div style="width: 100%">
             <div style="margin: 0 auto; width: fit-content">
