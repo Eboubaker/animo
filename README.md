@@ -2,6 +2,7 @@
 anime wallpapers download and share your wallpapers built with laravel
 # installation
 copy this into your terminal/cmd
+> you must have php,composer and npm installed
 ```bat 
 git clone https://github.com/ZOLDIK0/animo animo
 cd animo
@@ -14,6 +15,8 @@ npm run dev
 php artisan serve
 ```
 > before migrating remember to set up your database  in .env file
+
+
 
 open browser to http://127.0.0.1:8000
 
