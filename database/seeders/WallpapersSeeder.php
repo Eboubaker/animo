@@ -20,7 +20,7 @@ class WallpapersSeeder extends Seeder
         $directory = storage_path("faker/images");
         $images = array_diff(scandir($directory), array('..', '.'));
         $tag = Tag::create(["name" => "mix"]);
-        User::create(["username" => "abdoo", "password" => Hash::make("abdoo")]);
+        User::create(["username" => "admin", "password" => Hash::make("password")]);
         foreach($images as $image)
         {
             $image = $directory . DIRECTORY_SEPARATOR . $image;
