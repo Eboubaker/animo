@@ -52,13 +52,13 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="fdd">
                                   <a class="dropdown-item" href="#" onclick="document.getElementById('fdd').innerHTML='Search By Tag';document.getElementById('sf').value='tag'">Search By Tag</a>
-                                  <a class="dropdown-item" href="#" onclick="document.getElementById('fdd').innerHTML='Search By Name';document.getElementById('sf').value='name'">Search By Name</a>
+                                  <a selected="selected" class="dropdown-item" href="#" onclick="document.getElementById('fdd').innerHTML='Search By Name';document.getElementById('sf').value='name'">Search By Name</a>
                                 </div>
                             </div>
                             <div style="display: inline-block">
-                                <input autocomplete="false" type="text" style="border-radius: 4px;display:inline-block" size="40" class="form-control" name="search" placeholder="Search for Wallpaper">
+                                <input autocomplete="false" type="text" style="border-radius: 4px;display:inline-block" size="40" class="form-control" name="search" placeholder="Search for Wallpaper" value="{{ request('search') }}">
                             </div>
-                            <input id='sf' hidden style="display:none" name="filter" value="tag" placeholder="Search term...">
+                            <input id='sf' hidden style="display:none" name="filter" value="{{ request('filter') ?? 'name' }}" placeholder="Search term...">
                             <span class="input-group-btn" style="display:inline-block">
                                 <button style="margin-left:3px" class="btn btn-default" id="submit-btn" type="submit"><svg xmlns="http://www.w3.org/2000/svg" style="width:15px;height:100%" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
